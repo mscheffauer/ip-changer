@@ -554,69 +554,71 @@ Public Class Form1
 
             For Each IPAddressInfo2 As UnicastIPAddressInformation In IPInfo2
 
+                If IPAddressInfo2.Address.IsIPv6LinkLocal = False Then
 
 
 
-                If RadioButton2.Checked = True Then
 
-                    If oldipadr2 IsNot IPAddressInfo2.Address.ToString Then
+                    If RadioButton2.Checked = True Then
+
+                        If oldipadr2 IsNot IPAddressInfo2.Address.ToString Then
 
 
-                        oldipadr2 = IPAddressInfo2.Address.ToString
-                        Label13.Text = oldipadr2
+                            oldipadr2 = IPAddressInfo2.Address.ToString
+                            Label13.Text = oldipadr2
 
-                        If startup2 = False Then
+                            If startup2 = False Then
 
-                            testarray = Split(oldipadr2, ".")
-                            TextBox2.Text = testarray(0)
-                            TextBox3.Text = testarray(1)
-                            TextBox4.Text = testarray(2)
-                            TextBox5.Text = testarray(3)
+                                testarray = Split(oldipadr2, ".")
+                                TextBox2.Text = testarray(0)
+                                TextBox3.Text = testarray(1)
+                                TextBox4.Text = testarray(2)
+                                TextBox5.Text = testarray(3)
 
-                            testarray = Split(IPAddressInfo2.IPv4Mask.ToString, ".")
-                            TextBox1.Text = testarray(0)
-                            TextBox6.Text = testarray(1)
-                            TextBox7.Text = testarray(2)
-                            TextBox8.Text = testarray(3)
+                                testarray = Split(IPAddressInfo2.IPv4Mask.ToString, ".")
+                                TextBox1.Text = testarray(0)
+                                TextBox6.Text = testarray(1)
+                                TextBox7.Text = testarray(2)
+                                TextBox8.Text = testarray(3)
 
-                            startup2 = True
-                            startup1 = False
+                                startup2 = True
+                                startup1 = False
 
-                            PerformTrig = True
-                            TimerTrig.Enabled = True
-                            PressedIn = 2
+                                PerformTrig = True
+                                TimerTrig.Enabled = True
+                                PressedIn = 2
 
-                            oldTextLength2 = TextBox2.TextLength
-                            oldTextLength3 = TextBox3.TextLength
-                            oldTextLength4 = TextBox4.TextLength
-                            oldTextLength5 = TextBox5.TextLength
-                            Timer3.Enabled = True
+                                oldTextLength2 = TextBox2.TextLength
+                                oldTextLength3 = TextBox3.TextLength
+                                oldTextLength4 = TextBox4.TextLength
+                                oldTextLength5 = TextBox5.TextLength
+                                Timer3.Enabled = True
+                            End If
+
+                        End If
+                    Else
+                        Continue For
+
+                    End If
+
+                    LabelSub.Text = IPAddressInfo2.IPv4Mask.ToString
+
+
+                    LabelDHCP.Text = myInterfaces(1).GetIPProperties.GetIPv4Properties.IsDhcpEnabled
+
+
+                    If LabelDHCP.Text = oldDHCP1 Then
+
+                    Else
+                        oldDHCP1 = LabelDHCP.Text
+                        If oldDHCP1 = "True" Then
+                            CheckBox1.Checked = 1
+                        ElseIf oldDHCP1 = "False" Then
+                            CheckBox1.Checked = 0
                         End If
 
                     End If
-                Else
-                    Continue For
-
                 End If
-
-                LabelSub.Text = IPAddressInfo2.IPv4Mask.ToString
-
-
-                LabelDHCP.Text = myInterfaces(1).GetIPProperties.GetIPv4Properties.IsDhcpEnabled
-
-
-                If LabelDHCP.Text = oldDHCP1 Then
-
-                Else
-                    oldDHCP1 = LabelDHCP.Text
-                    If oldDHCP1 = "True" Then
-                        CheckBox1.Checked = 1
-                    ElseIf oldDHCP1 = "False" Then
-                        CheckBox1.Checked = 0
-                    End If
-
-                End If
-
             Next
 
 
@@ -634,69 +636,73 @@ Public Class Form1
 
             For Each IPAddressInfo1 As UnicastIPAddressInformation In IPInfo1
 
+                If IPAddressInfo1.Address.IsIPv6LinkLocal = False Then
 
 
-                If RadioButton1.Checked = True Then
-
-                    If oldipadr1 IsNot IPAddressInfo1.Address.ToString Then
-                        oldipadr1 = IPAddressInfo1.Address.ToString
-                        Label13.Text = oldipadr1
-                        If startup1 = False Then
-
-                            testarray = Split(oldipadr1, ".")
-                            TextBox2.Text = testarray(0)
-                            TextBox3.Text = testarray(1)
-                            TextBox4.Text = testarray(2)
-                            TextBox5.Text = testarray(3)
-
-                            testarray = Split(IPAddressInfo1.IPv4Mask.ToString, ".")
-                            TextBox1.Text = testarray(0)
-                            TextBox6.Text = testarray(1)
-                            TextBox7.Text = testarray(2)
-                            TextBox8.Text = testarray(3)
 
 
-                            startup1 = True
-                            startup2 = False
+                    If RadioButton1.Checked = True Then
 
-                            PerformTrig = True
-                            TimerTrig.Enabled = True
-                            PressedIn = 2
+                        If oldipadr1 IsNot IPAddressInfo1.Address.ToString Then
+                            oldipadr1 = IPAddressInfo1.Address.ToString
+                            Label13.Text = oldipadr1
+                            If startup1 = False Then
 
-                            oldTextLength2 = TextBox2.TextLength
-                            oldTextLength3 = TextBox3.TextLength
-                            oldTextLength4 = TextBox4.TextLength
-                            oldTextLength5 = TextBox5.TextLength
-                            Timer3.Enabled = True
+                                testarray = Split(oldipadr1, ".")
+                                TextBox2.Text = testarray(0)
+                                TextBox3.Text = testarray(1)
+                                TextBox4.Text = testarray(2)
+                                TextBox5.Text = testarray(3)
+
+                                testarray = Split(IPAddressInfo1.IPv4Mask.ToString, ".")
+                                TextBox1.Text = testarray(0)
+                                TextBox6.Text = testarray(1)
+                                TextBox7.Text = testarray(2)
+                                TextBox8.Text = testarray(3)
+
+
+                                startup1 = True
+                                startup2 = False
+
+                                PerformTrig = True
+                                TimerTrig.Enabled = True
+                                PressedIn = 2
+
+                                oldTextLength2 = TextBox2.TextLength
+                                oldTextLength3 = TextBox3.TextLength
+                                oldTextLength4 = TextBox4.TextLength
+                                oldTextLength5 = TextBox5.TextLength
+                                Timer3.Enabled = True
+                            End If
+
+
+                        End If
+                    Else
+                        Continue For
+                    End If
+
+                    LabelSub.Text = IPAddressInfo1.IPv4Mask.ToString
+
+
+
+
+                    LabelDHCP.Text = myInterfaces(0).GetIPProperties.GetIPv4Properties.IsDhcpEnabled
+
+                    If LabelDHCP.Text = oldDHCP1 Then
+
+                    Else
+                        oldDHCP1 = LabelDHCP.Text
+                        If oldDHCP1 = "True" Then
+                            CheckBox1.Checked = 1
+                        ElseIf oldDHCP1 = "False" Then
+                            CheckBox1.Checked = 0
                         End If
 
-
                     End If
-                Else
-                    Continue For
                 End If
-
-                LabelSub.Text = IPAddressInfo1.IPv4Mask.ToString
-
-
-
-
-                LabelDHCP.Text = myInterfaces(0).GetIPProperties.GetIPv4Properties.IsDhcpEnabled
-
-                If LabelDHCP.Text = oldDHCP1 Then
-
-                Else
-                    oldDHCP1 = LabelDHCP.Text
-                    If oldDHCP1 = "True" Then
-                        CheckBox1.Checked = 1
-                    ElseIf oldDHCP1 = "False" Then
-                        CheckBox1.Checked = 0
-                    End If
-
-                End If
-
 
             Next
+
         End If
 
 
